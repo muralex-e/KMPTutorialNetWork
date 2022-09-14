@@ -50,6 +50,11 @@ kotlin {
         implementation("com.soywiz.korlibs.korio:korio:2.4.10")
         implementation("io.ktor:ktor-client-core:2.0.0-beta-1")
         implementation("io.ktor:ktor-client-serialization:2.0.0-beta-1")
+
+        implementation("io.ktor:ktor-client-content-negotiation:2.0.0-beta-1")
+        implementation("io.ktor:ktor-serialization-kotlinx-json:2.0.0-beta-1")
+        implementation("io.ktor:ktor-client-logging:2.0.0-beta-1")
+
       }
     }
 

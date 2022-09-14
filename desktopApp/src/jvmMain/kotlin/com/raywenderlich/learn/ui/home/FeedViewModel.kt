@@ -44,7 +44,9 @@ import com.raywenderlich.learn.data.model.PLATFORM
 import com.raywenderlich.learn.data.model.RWEntry
 import com.raywenderlich.learn.domain.cb.FeedData
 import com.raywenderlich.learn.platform.Logger
+import kotlinx.coroutines.launch
 import moe.tlaster.precompose.viewmodel.ViewModel
+import moe.tlaster.precompose.viewmodel.viewModelScope
 
 private const val TAG = "FeedViewModel"
 
@@ -62,17 +64,22 @@ class FeedViewModel : ViewModel(), FeedData {
   }
 
   fun fetchAllFeeds() {
-    Logger.d(TAG, "fetchAllFeeds")
+    Logger.d(TAG, "fetchAllFeeds vm")
+    presenter.fetchAllFeeds(this)
   }
 
   fun fetchMyGravatar() {
     Logger.d(TAG, "fetchMyGravatar")
+    presenter.fetchMyGravatar(this)
   }
 
   // region FeedData
 
   override fun onNewDataAvailable(items: List<RWEntry>, platform: PLATFORM, exception: Exception?) {
     Logger.d(TAG, "onNewDataAvailable | platform=$platform items=${items.size}")
+    viewModelScope.launch {
+      _items[platform] = items
+    }
   }
 
   override fun onNewImageUrlAvailable(
@@ -86,6 +93,9 @@ class FeedViewModel : ViewModel(), FeedData {
 
   override fun onMyGravatarData(item: GravatarEntry) {
     Logger.d(TAG, "onMyGravatarData | item=$item")
+    viewModelScope.launch {
+      profile.value = item
+    }
   }
 
   // endregion FeedData

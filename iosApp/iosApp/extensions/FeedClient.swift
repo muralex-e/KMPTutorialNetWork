@@ -53,10 +53,12 @@ public class FeedClient {
   }
 
   public func fetchProfile(completion: @escaping ProfileHandler) {
+    feedPresenter.fetchMyGravatar(cb: self)
     handlerProfile = completion
   }
 
   public func fetchFeeds(completion: @escaping FeedHandler) {
+    feedPresenter.fetchAllFeeds(cb: self)
     handler = completion
   }
 

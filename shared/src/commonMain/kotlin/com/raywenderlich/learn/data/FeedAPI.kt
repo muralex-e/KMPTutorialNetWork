@@ -29,9 +29,9 @@ public object FeedAPI {
 
     private val client: HttpClient = HttpClient {
 
-//        defaultRequest {
-//            header(X_APP_NAME, APP_NAME)
-//        }
+        defaultRequest {
+            header(X_APP_NAME, APP_NAME)
+        }
 
         install(ContentNegotiation) {
             json(nonStrictJson)
@@ -49,7 +49,7 @@ public object FeedAPI {
 
     public suspend fun fetchMyGravatar(hash: String): GravatarProfile =
         client.get("$GRAVATAR_URL$hash$GRAVATAR_RESPONSE_FORMAT") {
-            header(X_APP_NAME, APP_NAME)
+            //header(X_APP_NAME, APP_NAME)
         }.body()
 }
 

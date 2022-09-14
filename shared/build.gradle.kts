@@ -62,6 +62,9 @@ kotlin {
       dependencies {
         implementation(kotlin("test-common"))
         implementation(kotlin("test-annotations-common"))
+        implementation(kotlin("test-junit"))
+        implementation("junit:junit:4.13.2")
+        implementation("io.ktor:ktor-client-mock:2.0.0-beta-1")
       }
     }
 

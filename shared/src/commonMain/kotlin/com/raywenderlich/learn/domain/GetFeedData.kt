@@ -84,9 +84,7 @@ public class GetFeedData {
         onFailure(e)
       }
     }
-
   }
-
 
   public suspend fun invokeGetMyGravatar(
     hash: String,

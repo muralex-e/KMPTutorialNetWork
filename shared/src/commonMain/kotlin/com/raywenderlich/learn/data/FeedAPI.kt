@@ -1,6 +1,8 @@
 package com.raywenderlich.learn.data
 
 import HttpClientLogger
+import com.raywenderlich.learn.APP_NAME
+import com.raywenderlich.learn.X_APP_NAME
 import com.raywenderlich.learn.data.model.GravatarProfile
 import com.soywiz.korio.net.http.Http
 import io.ktor.client.*
@@ -26,6 +28,11 @@ public object FeedAPI {
     private val nonStrictJson = Json { isLenient = true; ignoreUnknownKeys = true }
 
     private val client: HttpClient = HttpClient {
+
+//        defaultRequest {
+//            header(X_APP_NAME, APP_NAME)
+//        }
+
         install(ContentNegotiation) {
             json(nonStrictJson)
         }
@@ -41,7 +48,9 @@ public object FeedAPI {
     }
 
     public suspend fun fetchMyGravatar(hash: String): GravatarProfile =
-        client.get("$GRAVATAR_URL$hash$GRAVATAR_RESPONSE_FORMAT").body()
+        client.get("$GRAVATAR_URL$hash$GRAVATAR_RESPONSE_FORMAT") {
+            header(X_APP_NAME, APP_NAME)
+        }.body()
 }
 
 

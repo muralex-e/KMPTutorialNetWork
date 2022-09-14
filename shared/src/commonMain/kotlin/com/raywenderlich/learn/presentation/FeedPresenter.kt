@@ -48,7 +48,7 @@ import kotlinx.serialization.json.Json
 
 private const val TAG = "FeedPresenter"
 private val json = Json { ignoreUnknownKeys = true }
-private const val GRAVATAR_EMAIL = "aleksandr.mironov@ebox.ca"
+private const val GRAVATAR_EMAIL = "aleksandr.mir-onov@ebox.ca"
 
 private const val RW_CONTENT = "[" +
     "{\"platform\":\"all\", \"url\":\"https://www.raywenderlich.com/feed.xml\", \"image\":\"https://assets.carolus.raywenderlich.com/assets/razeware_460-308933a0bda63e3e327123cab8002c0383a714cd35a10ade9bae9ca20b1f438b.png\"}," +

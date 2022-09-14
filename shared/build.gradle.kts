@@ -4,6 +4,8 @@ plugins {
   id("com.android.library")
   kotlin("multiplatform")
   id("com.squareup.sqldelight")
+  kotlin("plugin.serialization")
+  id("kotlin-parcelize")
 }
 
 version = "1.0"
@@ -44,7 +46,7 @@ kotlin {
     val commonMain by getting {
       dependencies {
         implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.3.2")
-
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
         implementation("com.soywiz.korlibs.korio:korio:2.4.10")
       }
     }
@@ -101,4 +103,8 @@ kotlin {
       }
     }
   }
+}
+
+kotlin.sourceSets.all {
+  languageSettings.optIn("kotlin.RequiresOptIn")
 }
